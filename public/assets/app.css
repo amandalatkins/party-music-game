@@ -3,5 +3,21 @@
 }
 
 .album {
-    max-width: 100%
+    max-width: 100%;
+    border: 1px solid black;
+}
+
+.gameMessage {
+    padding: 15px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.gameScore {
+    padding:15px;
+    font-size: 20px
+}
+
+.album.clicked {
+    opacity: 0;
 }
