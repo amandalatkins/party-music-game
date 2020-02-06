@@ -2,7 +2,20 @@ import React from "react";
 
 function ScoreBar(props) {
     return (
-        <div></div>
+        <div className="container game">
+            <div className="row">
+                <div className="col-6">
+                    <p className={props.gameActive ? "gameMessage bg-success" : "gameMessage bg-danger"}>
+                        {props.currentMessage}
+                    </p>
+                </div>
+                <div className="col-6 text-right">
+                    <p className="gameScore">
+                        <strong>Music Rating: {props.score}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
     );
 }
 
