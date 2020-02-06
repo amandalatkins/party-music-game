@@ -4,7 +4,15 @@
 
 .album {
     max-width: 100%;
-    border: 1px solid black;
+    border: 5px solid #fff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+    cursor: pointer
+}
+
+.album:hover {
+    border: 5px solid yellow
 }
 
 .gameMessage {
@@ -20,4 +28,12 @@
 
 .album.clicked {
     opacity: 0;
+}
+
+.jumbotron {
+    background-image: url(https://images.unsplash.com/photo-1498145645178-ab2c7cebc433?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1850&q=80);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
 }
