@@ -23,18 +23,19 @@ class GameContainer extends React.Component {
         // Pick 16 random albums from album.js to setup our game
         // For now, we'll just get 16 album covers
         var randAlbums = [];
+        var chosen = [];
         for (var i = 0; i < 16; i++) {
 
             var randNum = () => Math.floor(Math.random() * allAlbums.length);
             var rand = randNum();
-
-            var chosen = [];
 
             while(chosen.indexOf(allAlbums[rand].artist) > -1) {
                 rand = randNum();
             }
 
             chosen.push(allAlbums[rand].artist);
+
+            console.log(chosen);
 
             var randIndex = Math.floor(Math.random() * allAlbums[rand].albums.length);
 
@@ -85,6 +86,10 @@ class GameContainer extends React.Component {
     //     return interval;
     // }
 
+
+
+    // HANDLE WIN GAME, THROW CONFETTI + MODAL
+
     winGame = () => {
 
         var reset = {
@@ -119,6 +124,7 @@ class GameContainer extends React.Component {
     render() {
             return (
                 <div>
+                    {/* IMPORT A MODAL AND CONFETTI ON WIN GAME */}
                     {this.state.winGame ? "" : ""}
                     <div className="jumbotron">
                         <div className="container">
