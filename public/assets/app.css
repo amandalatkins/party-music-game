@@ -37,3 +37,22 @@
     background-repeat: no-repeat;
     color: #fff;
 }
+
+.winOverlay {
+    position: fixed; 
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.winModal {
+    position:relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    /* height: 300px;
+    width: 500px; */
+    background-color: #fff;
+}
