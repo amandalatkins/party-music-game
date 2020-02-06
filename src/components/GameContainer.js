@@ -9,7 +9,8 @@ class GameContainer extends React.Component {
     state = {
         score: 0,
         highScore: 0,
-        albums: []
+        albums: [],
+        currentMessage: "Click a record to start the party!"
     }
 
     componentDidMount() {
@@ -34,18 +35,36 @@ class GameContainer extends React.Component {
         this.setState({ albums: shuffle(this.albums) });
     }
 
-    setHighScore = () => {
+    endGame = () => {
+        var reset = {
+            score: 0,
+            currentMessage: "You already played that. Buzz kill."
+        };
         if (this.score > this.highScore) {
-            this.setState({ highScore: this.score });
+            reset.highScore = this.score;
         }
+        this.setState(reset);
     }
 
     setScore = (isCorrect) => {
         if (isCorrect) {
-            this.setState({ score: this.score+1 });
+            this.setState({ score: this.score+1, currentMessage: "Righteous! Good choice." });
         } else {
-            this.setState({ score: 0 });
+            this.endGame();
         }
+    }
+
+    render() {
+        return (
+            <div>
+                <ScoreBar score={this.score} highScore={this.highScore} currentMessage={this.currentMessage}/>
+                <div className="jumbotron">
+                    <h1 className="display-4">Party Music Pandemoneum!</h1>
+                    <p className="lead">You're hosting a party and spinning your favorite records! Click on an album to play it, but be careful to only play it once during the party lest you kill the mood!</p>
+                </div>
+                <PlayBoard albums={this.albums} />
+            </div>
+        );
     }
 
 }
