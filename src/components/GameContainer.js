@@ -11,31 +11,41 @@ class GameContainer extends React.Component {
         highScore: 0,
         albums: [],
         gameActive: true,
-        currentMessage: "Click a record to start the party!"
+        currentMessage: "Click a record to start the party!",
+        winGame: false
     }
 
     componentDidMount() {
         this.getAlbums();
     }
 
-    getAlbums = (cb) => {
+    getAlbums = () => {
         // Pick 16 random albums from album.js to setup our game
         // For now, we'll just get 16 album covers
         var randAlbums = [];
         for (var i = 0; i < 16; i++) {
+
+            var randNum = () => Math.floor(Math.random() * allAlbums.length);
+            var rand = randNum();
+
+            var chosen = [];
+
+            while(chosen.indexOf(allAlbums[rand].artist) > -1) {
+                rand = randNum();
+            }
+
+            chosen.push(allAlbums[rand].artist);
+
+            var randIndex = Math.floor(Math.random() * allAlbums[rand].albums.length);
+
             randAlbums.push({
                 id: i,
-                artist: allAlbums[i].artist,
-                cover: allAlbums[i].albums[0]
+                artist: allAlbums[rand].artist,
+                cover: allAlbums[rand].albums[randIndex]
             });
         }
         this.setState({ albums: randAlbums });
     }
-
-    // randomizeAlbums = (albums) => {
-    //     // Scramble the albums
-    //     return shuffle(albums);
-    // }
 
     endGame = () => {
         var reset = {
@@ -43,7 +53,47 @@ class GameContainer extends React.Component {
             gameActive: false,
             currentMessage: "You already played that. Buzz kill."
         };
-        if (this.score > this.highScore) {
+
+        if (this.state.score > this.state.highScore) {
+            reset.highScore = this.state.score;
+        }
+        this.setState(reset);
+        this.getAlbums();
+    }
+
+    // startConfetti = () => {
+    //     var end = Date.now() + (15 * 1000);
+
+    //     var interval = setInterval(function() {
+    //         if (Date.now() > end) {
+    //             return clearInterval(interval);
+    //         }
+
+    //         confetti({
+    //             startVelocity: 30,
+    //             spread: 360,
+    //             ticks: 60,
+    //             shapes: ['square'],
+    //             origin: {
+    //                 x: Math.random(),
+    //                 // since they fall down, start a bit higher than random
+    //                 y: Math.random() - 0.2
+    //             }
+    //         });
+    //     }, 200);
+
+    //     return interval;
+    // }
+
+    winGame = () => {
+
+        var reset = {
+            score: 0,
+            gameActive: true,
+            currentMessage: "Killer party! Throw another one!",
+            winGame: true
+        };
+        if (this.state.score+1 > this.state.highScore) {
             reset.highScore = this.state.score;
         }
         this.setState(reset);
@@ -53,8 +103,14 @@ class GameContainer extends React.Component {
         console.log("setting score");
         if (!isClicked) {
             var updateAlbums = this.state.albums;
-            updateAlbums[id].isClicked = true;
-            this.setState({ score: this.state.score+1, currentMessage: message, albums: shuffle(updateAlbums), gameActive: true});
+            var updateIndex = updateAlbums.findIndex(album => album.id === id);
+            updateAlbums[updateIndex].isClicked = true;
+            
+            if (parseInt(this.state.score)+1 === 16) {
+                this.winGame();
+            } else {
+                this.setState({ score: parseInt(this.state.score)+1, currentMessage: message, albums: shuffle(updateAlbums), gameActive: true});
+            }        
         } else {
             this.endGame();
         }
@@ -63,6 +119,7 @@ class GameContainer extends React.Component {
     render() {
             return (
                 <div>
+                    {this.state.winGame ? "" : ""}
                     <div className="jumbotron">
                         <div className="container">
                             <h1 className="display-4">Party Music Pandemoneum!</h1>
