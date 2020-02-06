@@ -2,7 +2,12 @@ import React from "react";
 
 function Album(props) {
     return (
-        <div></div>
+        <img 
+            className="album"
+            src={props.cover}
+            onClick={() => props.setScore(props.id, props.isClicked, props.artist+"! Good choice.")}
+            alt={`Album by ${props.artist}`}
+        />
     );
 }
 
