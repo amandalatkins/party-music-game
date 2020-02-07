@@ -2,9 +2,13 @@
 
 This client-side React app challenges you to play all your records at a party without replaying a single one. Click on a record to play it but be careful -- the records get shuffled around each time so be sure to remember which ones you've already played!
 
-*[Click here to play the game!](https://amandalatkins.github.io/party-music-game/)*
+
 
 ![Screen Shot](public/assets/screenshot.png)
+
+## Play the Game
+
+[Click here to play the game!](https://amandalatkins.github.io/party-music-game/)
 
 ## Technologies Used
 * [ReactJS](https://reactjs.org/)
