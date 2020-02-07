@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/party-music-game/static/js/main.920f494c.chunk.js",
-    "main.js.map": "/party-music-game/static/js/main.920f494c.chunk.js.map",
+    "main.js": "/party-music-game/static/js/main.a36ea194.chunk.js",
+    "main.js.map": "/party-music-game/static/js/main.a36ea194.chunk.js.map",
     "runtime-main.js": "/party-music-game/static/js/runtime-main.2b9ddbea.js",
     "runtime-main.js.map": "/party-music-game/static/js/runtime-main.2b9ddbea.js.map",
     "static/js/2.5da34f6e.chunk.js": "/party-music-game/static/js/2.5da34f6e.chunk.js",
     "static/js/2.5da34f6e.chunk.js.map": "/party-music-game/static/js/2.5da34f6e.chunk.js.map",
     "index.html": "/party-music-game/index.html",
-    "precache-manifest.2cf65a255f44c502f2c614cc93d65a30.js": "/party-music-game/precache-manifest.2cf65a255f44c502f2c614cc93d65a30.js",
+    "precache-manifest.f596eb8759322b03c29c5cd8827c92b0.js": "/party-music-game/precache-manifest.f596eb8759322b03c29c5cd8827c92b0.js",
     "service-worker.js": "/party-music-game/service-worker.js",
     "static/js/2.5da34f6e.chunk.js.LICENSE.txt": "/party-music-game/static/js/2.5da34f6e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2b9ddbea.js",
     "static/js/2.5da34f6e.chunk.js",
-    "static/js/main.920f494c.chunk.js"
+    "static/js/main.a36ea194.chunk.js"
   ]
 }

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7b11bbf0d69e0623bbc8c3db3106ec25",
+    "revision": "fc207a865781bac001a1aeebc7c23daf",
     "url": "/party-music-game/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/party-music-game/static/js/2.5da34f6e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b8805b02455ea418b052",
-    "url": "/party-music-game/static/js/main.920f494c.chunk.js"
+    "revision": "569c8713916d6951335f",
+    "url": "/party-music-game/static/js/main.a36ea194.chunk.js"
   },
   {
     "revision": "984cb498883e554ebbc6",
