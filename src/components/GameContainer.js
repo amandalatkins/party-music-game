@@ -4,6 +4,8 @@ import ScoreBar from "./ScoreBar";
 import Album from "./Album";
 import allAlbums from "../config/albums.json";
 import shuffle from "shuffle-array";
+import WinModal from "./WinModal";
+import confetti from "canvas-confetti";
 
 class GameContainer extends React.Component {
     state = {
@@ -12,7 +14,8 @@ class GameContainer extends React.Component {
         albums: [],
         gameActive: true,
         currentMessage: "Click a record to start the party!",
-        winGame: false
+        winGame: false,
+        confettiInterval: ""
     }
 
     componentDidMount() {
@@ -20,8 +23,7 @@ class GameContainer extends React.Component {
     }
 
     getAlbums = () => {
-        // Pick 16 random albums from album.js to setup our game
-        // For now, we'll just get 16 album covers
+        // Pick 16 random albums from albums.json to setup our game
         var randAlbums = [];
         var chosen = [];
         for (var i = 0; i < 16; i++) {
@@ -34,8 +36,6 @@ class GameContainer extends React.Component {
             }
 
             chosen.push(allAlbums[rand].artist);
-
-            console.log(chosen);
 
             var randIndex = Math.floor(Math.random() * allAlbums[rand].albums.length);
 
@@ -62,33 +62,28 @@ class GameContainer extends React.Component {
         this.getAlbums();
     }
 
-    // startConfetti = () => {
-    //     var end = Date.now() + (15 * 1000);
+    startConfetti = () => {
+        var end = Date.now() + (15 * 1000);
 
-    //     var interval = setInterval(function() {
-    //         if (Date.now() > end) {
-    //             return clearInterval(interval);
-    //         }
+        var interval = setInterval(function() {
+            if (Date.now() > end) {
+                return clearInterval(interval);
+            }
 
-    //         confetti({
-    //             startVelocity: 30,
-    //             spread: 360,
-    //             ticks: 60,
-    //             shapes: ['square'],
-    //             origin: {
-    //                 x: Math.random(),
-    //                 // since they fall down, start a bit higher than random
-    //                 y: Math.random() - 0.2
-    //             }
-    //         });
-    //     }, 200);
+            confetti({
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                shapes: ['square'],
+                origin: {
+                    x: Math.random(),
+                    y: Math.random() - 0.2
+                }
+            });
+        }, 200);
 
-    //     return interval;
-    // }
-
-
-
-    // HANDLE WIN GAME, THROW CONFETTI + MODAL
+        this.setState({ confettiInterval: interval });
+    }
 
     winGame = () => {
 
@@ -99,9 +94,16 @@ class GameContainer extends React.Component {
             winGame: true
         };
         if (this.state.score+1 > this.state.highScore) {
-            reset.highScore = this.state.score;
+            reset.highScore = this.state.score+1;
         }
         this.setState(reset);
+        this.startConfetti();
+    }
+
+    closeWinGame = () => {
+        clearInterval(this.state.confettiInterval);
+        this.getAlbums();
+        this.setState({ winGame: false, confettiInterval: "" });
     }
 
     setScore = (id, isClicked, message) => {
@@ -114,7 +116,7 @@ class GameContainer extends React.Component {
             if (parseInt(this.state.score)+1 === 16) {
                 this.winGame();
             } else {
-                this.setState({ score: parseInt(this.state.score)+1, currentMessage: message, albums: shuffle(updateAlbums), gameActive: true});
+                this.setState({ score: parseInt(this.state.score)+1, currentMessage: message, albums: shuffle(updateAlbums), gameActive: true, winGame: false});
             }        
         } else {
             this.endGame();
@@ -124,8 +126,7 @@ class GameContainer extends React.Component {
     render() {
             return (
                 <div>
-                    {/* IMPORT A MODAL AND CONFETTI ON WIN GAME */}
-                    {this.state.winGame ? "" : ""}
+                    {this.state.winGame ? <WinModal closeHandler={this.closeWinGame} /> : ""}
                     <div className="jumbotron">
                         <div className="container">
                             <h1 className="display-4">Party Music Pandemoneum!</h1>
