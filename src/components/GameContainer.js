@@ -1,5 +1,4 @@
 import React from "react";
-// import PlayBoard from "./PlayBoard";
 import ScoreBar from "./ScoreBar";
 import Album from "./Album";
 import allAlbums from "../config/albums.json";
@@ -151,7 +150,7 @@ class GameContainer extends React.Component {
                             ))}
                         </div>
                     </div>
-
+                    <br/><br/><br/>
                 </div>
             );
     }
