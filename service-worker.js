@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/party-music-game/precache-manifest.69f20f7f227e629c5a151575baf78ace.js"
+  "/party-music-game/precache-manifest.2cf65a255f44c502f2c614cc93d65a30.js"
 );
 
 self.addEventListener('message', (event) => {
